@@ -1,15 +1,16 @@
 <?php
-namespace libs;
-use interfaces\iInstrument;
-
+include('interfaces/iInstrument.php');
 class Instrument implements iInstrument
 {
-    protected $nameInstrument;
-    protected $categoriesInstrument;
-    public function __construct($nameInstr,$categor)
+    protected $nameInstrument = array();
+    protected $categoriesInstrument = array();
+    public function addInstrument($var)
     {
-        $this->nameInstrument = $nameInstr;
-        $this->categoriesInstrument = $categor;
+        $this->nameInstrument = $var;
+    }
+    public function addInstrumenCategory($var)
+    {
+        $this->categoriesInstrument = $var;
     }
     public function getName()
     {

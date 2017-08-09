@@ -1,5 +1,4 @@
 <?php
-namespace interfaces;
 interface iInstrument
 {
     public function getName();

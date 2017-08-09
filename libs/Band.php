@@ -1,21 +1,20 @@
 <?php
-namespace libs;
-use interfaces\iBand;
-use interfaces\iMusician;
-use interfaces\iInstrument;
-
-class Band implements iBand{
+include('interfaces/iBand.php');
+class Band implements iBand
+{
     protected $nameBand;
-    protected $genreBand;
-    protected $styleMusician;
-    protected $nameCategoryMusicianInstrument;
+    protected $genreBand = array();
     protected $nameInstrument;
-    protected $typeInstrument;
+    protected $categoryInstrument;
     protected $bangAssignMusicion;
     protected $typeMusician;
-    public function __construct($nameBand,$genreBand)
+    protected $bandGenre;
+    public function addNameBand($nameBand)
     {
         $this->nameBand = $nameBand;
+    }
+    public function addGenreBand($genreBand)
+    {
         $this->genreBand = $genreBand;
     }
     public function getName()
@@ -33,18 +32,18 @@ class Band implements iBand{
             return false;
         }
         if($obj){
-            $this->nameCategoryMusicianInstrument = $obj->getInstrument();
-            $this->nameInstrument = $this->nameCategoryMusicianInstrument[0];
-            $this->typeInstrument = $this->nameCategoryMusicianInstrument[1];
+            $this->nameInstrument = $obj->getInstrument();
+            $this->categoryInstrument = $obj->getInstrumentCategory();
             $this->typeMusician = $obj->getMusicianType();
             $this->bangAssignMusicion = $obj->getAssingBand();
+            $this->bandGenre = $obj->getGenreBand();
             return true;
         }
         return false;
     }
     public function getMusician()
     {
-        $arr = array($this->nameBand,$this->genreBand,$this->typeMusician,$this->bangAssignMusicion , $this->nameInstrument,  $this->typeInstrument);
+        $arr = array($this->typeMusician,$this->bangAssignMusicion , $this->bandGenre, $this->nameInstrument, $this->categoryInstrument);
         return $arr;
     }
 

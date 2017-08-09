@@ -1,19 +1,15 @@
 <?php
-namespace libs;
-use interfaces\iMusician;
-use interfaces\iInstrument;
-use interfaces\iBand;
-
+include('interfaces/iMusician.php');
 class Musician implements iMusician
 {
-    protected $typeMysician;
-    protected $instrument;
-    protected $categoryInstrument;
-    protected $band;
-    public function __construct($typeMusician)
+    protected $typeMysician = array();
+    protected $instrument = array();
+    protected $categoryInstrument = array();
+    protected $band = array();
+    protected $bandGebre = array();
+    public function addTypeMusician($typeMysician)
     {
-        $this->typeMysician = $typeMusician;
-
+        $this->typeMysician[] = $typeMysician;
     }
     public function addInstrument(iInstrument $obj)
     {
@@ -23,16 +19,21 @@ class Musician implements iMusician
         }
         if($obj)
         {
-            $this->instrument = $obj->getName();
-            $this->categoryInstrument = $obj->getCategory();
+            $this->instrument[] = $obj->getName();
+            $this->categoryInstrument[] = $obj->getCategory();
+
             return true;
         }
         return false;
 
     }
     public function getInstrument()
-    {   $arr = array($this->instrument,$this->categoryInstrument);
-        return $arr;
+    {
+        return    $this->instrument;
+    }
+    public function getInstrumentCategory()
+    {
+        return    $this->categoryInstrument;
     }
     public function assingToBand(iBand $nameBand)
     {
@@ -40,8 +41,10 @@ class Musician implements iMusician
         {
             return false;
         }
-        if($nameBand) {
-            $this->band = $nameBand->getName();
+        if($nameBand)
+        {
+            $this->band[] = $nameBand->getName();
+            $this->bandGebre[] = $nameBand->getGenre();
             return true;
         }
         return false;
@@ -50,10 +53,16 @@ class Musician implements iMusician
     {
         return $this->band;
     }
+    public function getGenreBand()
+    {
+        return $this->bandGebre;
+    }
     public function getMusicianType()
     {
-        return $this->typeMysician;
+
+        return   $this->typeMysician;
     }
 }
 
 ?>
+

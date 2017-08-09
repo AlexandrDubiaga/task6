@@ -1,5 +1,4 @@
 <?php
-namespace interfaces;
 interface iMusician
 {
     public function addInstrument(iInstrument $obj);

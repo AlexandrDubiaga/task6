@@ -1,37 +1,84 @@
 <?php
-include('autoload.php');
 include ('config.php');
-use libs\Band;
-use libs\Instrument;
-use libs\Musician;
+include('libs/Band.php');
+include('libs/Musician.php');
+include('libs/Instrument.php');
+$gitara = new Instrument();
+$pianino = new Instrument();
+$baraban = new Instrument();
+$musicianFirst = new Musician();
+$musicianSecond = new Musician();
+$vagos = new Band();
+$rifa = new Band();
+$rifa->addNameBand('Riva');
+$rifa->addGenreBand('gancster');
+$vagos->addNameBand('Vagos');
+$vagos->addGenreBand('LKN');
 
-$instrument = new Instrument('Gitara','Electro');
-$musician = new Musician('ROCK');
-$group = new Band('PICABU','Dup_Step');
+$gitara->addInstrument('Gitara');
+$gitara->addInstrumenCategory('Electro');
 
-$musicianWithInstrument = $musician->addInstrument($instrument);
-if(!$musicianWithInstrument){
-    echo Error_add_Instrument;
+$baraban->addInstrument('Baranan');
+$baraban->addInstrumenCategory('Udarnie');
+
+$pianino->addInstrument('Pianino');
+$pianino->addInstrumenCategory('Dram-Base');
+
+
+$musicianWithInstrumentGitara = $musicianFirst->addInstrument($gitara);
+$musicianWithInstrumentPiano = $musicianFirst->addInstrument($pianino);
+if(!$musicianWithInstrumentGitara || !$musicianWithInstrumentPiano){
+   $errorAddinstrument =  Error_add_Instrument;
 }else
 {
-    echo Good_add_Instrument;
+    $goodAddinstrument =  Good_add_Instrument;
 }
-$assingMusicianIntoTheGroup = $musician->assingToBand($group);
-if(!$assingMusicianIntoTheGroup){
-    echo Error_assing_musician;
+$musicianFirst->addTypeMusician('Solist');
+
+
+$assingMusicianIntoTheGroupRifa = $musicianFirst->assingToBand($rifa);
+$assingMusicianIntoTheGroupVagos = $musicianFirst->assingToBand($vagos);
+if(!$assingMusicianIntoTheGroupRifa && !$assingMusicianIntoTheGroupVagos){
+   $errorAssignMusician =  Error_assing_musician;
 }else
 {
-    echo Good_assing_musician;
+    $goodAssignMusician =  Good_assing_musician;
 }
-
-$addedMusicianIntotheGroup = $group->addMusician($musician);
+$addedMusicianIntotheGroup = $rifa->addMusician($musicianFirst);
 if(!$addedMusicianIntotheGroup){
-    echo Error_added_musician;
+    $errorAddedMusician =  Error_added_musician;
 }else
 {
-    echo Good_added_musician;
+    $goodAddedMusician = Good_added_musician;
 }
-$musicianInBand = $group->getMusician();
+$musicianInBand = $rifa->getMusician();
+
+
+$musicianWithInstrumentBaraban = $musicianSecond->addInstrument($baraban);
+if(!$musicianWithInstrumentBaraban){
+    $errorAddinstrumentForSecondMusician =  Error_add_Instrument;
+}else
+{
+    $goodAddinstrumentForSecondMusician =  Good_add_Instrument;
+}
+$musicianSecond->addTypeMusician('Back-Vokalist');
+$assingMusicianIntoTheGroupRivaBand = $musicianSecond->assingToBand($rifa);
+if(!$assingMusicianIntoTheGroupRivaBand){
+    $errorAssignMusicianForSecondMusician =  Error_assing_musician;
+}else
+{
+    $goodAssignMusicianForSecondMusician =  Good_assing_musician;
+}
+$addedMusicianIntotheGroupRifaband = $rifa->addMusician($musicianSecond);
+if(!$addedMusicianIntotheGroupRifaband){
+    $errorAddedMusicianForSecondMusician =  Error_added_musician;
+}else
+{
+    $goodAddedMusicianForSecondMusician = Good_added_musician;
+}
+$musicianSecondinBand = $rifa->getMusician();
+
+
 include('templates/index.php');
 
 ?>

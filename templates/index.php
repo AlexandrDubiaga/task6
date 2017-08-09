@@ -1,6 +1,3 @@
-<?php
-namespace templates;
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,27 +10,69 @@ namespace templates;
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 <body>
-<table class="table table-striped" >
-    <tr>
-        <td>Name Band</td>
-        <td>Genre Band</td>
-        <td>Style musician</td>
-        <td>Band</td>
-        <td>Instrument</td>
-        <td>Type instrument</td>
-
-    </tr>
-    <tr>
+    <?php
+        echo $errorAddinstrument;
+        echo $goodAddinstrument;
+        echo $errorAssignMusician;
+        echo $goodAssignMusician;
+        echo $errorAddedMusician;
+        echo $goodAddedMusician;
+    ?>
+    <h3 style="color: #1b6d85;text-align: center">First musician</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td>Style musician</td>
+            <td colspan="2">Is in groups</td>
+            <td colspan="2">Genre groups</td>
+            <td colspan="2">Instrument</td>
+            <td colspan="2">Type instrument</td>
+        </tr>
+        <tr>
         <?php
-        foreach ($musicianInBand as $value){
-            ?>
-            <td><?php print_r($value);  ?></td>
+            foreach ($musicianInBand as $value)
+            {
+                foreach ($value as $item)
+                {
+                    ?>
+                    <td><?php print_r($item); ?></td>
+                    <?php
+                }
+            }
+                    ?>
+        </tr>
+    </table>
+    <?php
+        echo $errorAddinstrumentForSecondMusician;
+        echo $goodAddinstrumentForSecondMusician;
+        echo $errorAssignMusicianForSecondMusician;
+        echo $goodAssignMusicianForSecondMusician;
+        echo $errorAddedMusicianForSecondMusician;
+        echo $goodAddedMusicianForSecondMusician;
+    ?>
+    <h3 style="color: #1b6d85;text-align: center">Second musician</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <td>Style musician</td>
+            <td>Is in groups</td>
+            <td >Genre groups</td>
+            <td>Instrument</td>
+            <td>Type instrument</td>
+        </tr>
+        <tr>
         <?php
-        }
+            foreach ($musicianSecondinBand as $value)
+            {
+                foreach ($value as $item)
+                {
+                    ?>
+                    <td><?php print_r($item); ?></td>
+                    <?php
+                }
+            }
         ?>
-    </tr>
-</table>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+        </tr>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

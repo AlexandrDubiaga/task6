@@ -1,5 +1,4 @@
 <?php
-namespace interfaces;
 interface iBand
 {
     public function getName();
